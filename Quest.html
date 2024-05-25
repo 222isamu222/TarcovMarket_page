@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="quest.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.checkbox').change(function () {
+				if ($(this).is(":checked")) {
+					$.ajax({
+						url: 'Quest.php',
+						method: 'POST',
+						data: { checkbox_value: $(this).val() },
+						success: function (response) {
+							// リクエストが成功した場合の処理
+							console.log(response);
+						},
+						error: function (xhr, status, error) {
+							// エラーが発生した場合の処理
+							console.error(error);
+						}
+					});
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="top">
+
+			<div class="title">
+				<a href="top.html">
+					<p>Item Management</p>
+				</a>
+			</div>
+			
+				<form class="form_quest">
+					<input type="text" class="input_text" placeholder="Search Item Name"/> 
+
+					<div class="boxes">
+						<input type="checkbox" id="box-1" class="checkbox">
+						<label for="box-1">Hideout</label>
+
+						<input type="checkbox" id="box-2" class="checkbox">
+						<label for="box-2">Collector</label>
+
+						<input type="checkbox" id="box-3" class="checkbox">
+						<label for="box-3">Other Task</label>
+
+						<input type="checkbox" id="box-4" class="checkbox">
+						<label for="box-4">Find in Raid</label>
+					</div>
+
+				</form>
+
+			<a href="Unlock.html">
+				<div class="container_trade">
+					<p>Unloking Items</p>
+					<img src="images/Mechanic.png">
+				</div>
+			</a>
+		</div>
+
+		<div class="content">
+			<div class="panel">
+				<div class="left">
+					<p>Crickent</p>
+					<img src="items/Crickent.png">
+				</div>
+				<div class="right">
+					<form>
+						<input type="submit" class="button_minus" value="minus">
+					</form>
+					<p>0/4</p>
+					<form>
+						<input type="submit" class="button_plus" value="plus">
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+</body>
+</html>
+
